@@ -1,0 +1,79 @@
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424 !important;
+
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+main {
+  margin-top: 30px;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  padding-left: 0;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #f7df1eaa);
+}
+
+#pills-tabContent {
+  margin-top: 30px;
+}
+
+#v-pills-tabContent {
+  text-align: left;
+}
+
+code {
+  display: inline-block;
+  background-color: #000;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+ol li {
+  margin-bottom: 40px;
+}
+
+ol li::marker {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.code-line {
+  display: block;
+}
+
+.code-line + .code-line {
+  margin-top: 5px;
+}
