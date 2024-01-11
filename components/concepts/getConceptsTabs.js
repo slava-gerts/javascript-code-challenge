@@ -1,3 +1,5 @@
+import {mapJoin} from '../../utils/map'
+
 const tabs = [
   {
     active: true,
@@ -19,7 +21,7 @@ const tabs = [
   {
     title: 'Asynchronous',
     id: 'v-pills-asynchronous',
-  }
+  },
 ]
 
 export function getConceptsTabs() {
@@ -27,7 +29,7 @@ export function getConceptsTabs() {
     `
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       ${
-        tabs.map(({active, title, id}) => {
+        mapJoin(tabs, ({active, title, id}) => {
           return (
             `
             <button class="nav-link ${active ? 'active': ''}" id="${id}-tab" data-bs-toggle="pill" data-bs-target="#${id}" type="button" role="tab" aria-controls="${id}" aria-selected="${active}">
@@ -35,7 +37,7 @@ export function getConceptsTabs() {
             </button>
             `
           )
-        }).join('')
+        })
       }
     </div>
     `

@@ -65,6 +65,10 @@ ol li {
   margin-bottom: 40px;
 }
 
+ul li {
+  margin-bottom: 5px;
+}
+
 ol li::marker {
   font-size: 1.5em;
   font-weight: 600;
@@ -76,4 +80,13 @@ ol li::marker {
 
 .code-line + .code-line {
   margin-top: 5px;
+}
+
+#notes,
+#references {
+  margin-top: 10px;
+}
+
+pre code {
+  color: var(--bs-code-color);
 }

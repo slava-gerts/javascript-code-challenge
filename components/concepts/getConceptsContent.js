@@ -1,4 +1,5 @@
 import {getContentById} from '../getContent'
+import {mapJoin} from '../../utils/map'
 
 const tabs = [
   {
@@ -25,17 +26,17 @@ export function getConceptsContent() {
     `
     <div class="tab-content" id="v-pills-tabContent">
       ${
-        tabs.map(({active, getContent, id}) => {
+        mapJoin(tabs, ({active, getContent, id}) => {
           return (
             `
             <div class="tab-pane fade show ${active ? 'active' : ''}" id="${id}" role="tabpanel" aria-labelledby="${id}-tab" tabindex="0">
               <ol>
-                ${getContent?.()}
+                ${getContent?.() ?? 'Under construction'}
               </ol>
             </div>
             `
           )
-        }).join('')
+        })
       }
     </div>
     `

@@ -1,3 +1,5 @@
+import {mapJoin} from '../utils/map'
+
 const tabs = [
   {
     active: true,
@@ -16,7 +18,7 @@ export function getTabs() {
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           ${
-            tabs.map(({active, title, id}) => {
+            mapJoin(tabs, ({active, title, id}) => {
               return (
                 `
                   <button class="nav-link ${active ? 'active' : ''}" id="${id}-tab" data-bs-toggle="pill" data-bs-target="#${id}" type="button" role="tab" aria-controls="${id}" aria-selected="${!!active}">
@@ -24,7 +26,7 @@ export function getTabs() {
                   </button>
                 `
               )
-            }).join('')
+            })
           }
         </div>
       </nav>
