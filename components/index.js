@@ -1,2 +1,2 @@
-export {getTabs} from './renderTabs.js'
-export {getTabsContent} from './renderTabsContent.js'
+export {renderTabs} from './renderTabs.js'
+export {renderTabsContent} from './renderTabsContent.js'

@@ -1,6 +1,6 @@
 import {mapJoin} from '../../utils/map'
 
-export function getConceptsContent(tabs) {
+export function renderConceptsContent(tabs) {
   return (
     `
     <div class="tab-content" id="v-pills-tabContent">

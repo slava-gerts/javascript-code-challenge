@@ -1,10 +1,10 @@
-import {getConcepts} from './concepts'
+import {renderConcepts} from './concepts'
 
-export function getTabsContent() {
+export function renderTabsContent() {
   return (
     `
     <div class="tab-content" id="pills-tabContent">
-      ${getConcepts()}
+      ${renderConcepts()}
       <div class="tab-pane fade" id="pills-tasks" role="tabpanel" aria-labelledby="pills-tasks-tab" tabindex="0">
         Tasks
       </div>

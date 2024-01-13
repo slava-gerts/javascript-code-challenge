@@ -12,7 +12,7 @@ const tabs = [
   }
 ]
 
-export function getTabs() {
+export function renderTabs() {
   return (
     `
       <nav>
