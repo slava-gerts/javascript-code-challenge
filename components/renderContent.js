@@ -1,11 +1,13 @@
-import {primitives} from '../content'
+import {primitives, functions, asynchronous} from '../content'
 import {mapJoin} from '../utils/map'
 
 const content = {
-  'primitives': primitives
+  'primitives': primitives,
+  'functions': functions,
+  'asynchronous': asynchronous,
 }
 
-export function getContentById(id) {
+export function renderContentById(id) {
   const contentById = content[id]
   if (contentById?.length < 1) return 'Incorrect data'
 
