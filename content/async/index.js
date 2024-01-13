@@ -3,18 +3,23 @@ import {MyPromise} from './promise'
 export const content = [
   {
     title: 'Write your own implementation of "Promise"',
-    data: MyPromise
+    data: [
+      'const PENDING_STATE = "pending"',
+      'const FULFILLED_STATE = "fulfilled"',
+      'const REJECTED_STATE = "rejected"',
+      ' ',
+      `${MyPromise}`,
+    ]
   }
 ]
 
 ;(async function f() {
   const promise = new MyPromise((resolve, reject) => {
-    setTimeout(() => reject(new Error('error')))
+    setTimeout(() => resolve(5))
   }).then(value => {
     console.log('Success: ', value)
-  }, error => {
-    console.log('Error: ', error)
+    return value * 2
   }).then(value => {
-    console.log(value)
+    console.log('Success 2: ', value)
   })
 })()

@@ -1,53 +1,3 @@
-// export class MyPromise {
-//   value
-//   reason
-
-//   thenQueue = []
-//   catchQueue = []
-//   finallyQueue = []
-
-//   constructor(executor, timeout) {
-//     try {
-//       executor?.(this._resolve.bind(this), this._reject.bind(this))
-//     } catch (e) {
-//       this._reject(e)
-//     } finally {
-//       (this.finallyQueue.pop())?.()
-//     }
-//   }
-
-//   then(callback) {
-//     this.thenQueue.push(callback)
-//     return this
-//   }
-
-//   catch(callback) {
-//     this.catchQueue.push(callback)
-//     return this
-//   }
-
-//   finally(callback) {
-//     this.finallyQueue.push(callback)
-//     return this
-//   }
-
-//   _resolve(value) {
-//     this.thenQueue.forEach(thenCallback => {
-//       const result = thenCallback(value)
-//       if (result != null) {
-//         value = result
-//       }
-//     })
-//   }
-
-//   _reject(reason) {
-//     const latestCall = this.catchQueue.pop()
-//     latestCall?.(reason)
-//   }
-// }
-
-// // module.exports = MyPromise
-
 const PENDING_STATE = 'pending'
 const FULFILLED_STATE = 'fulfilled'
 const REJECTED_STATE = 'rejected'
@@ -96,23 +46,53 @@ export class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
-    if (this.state === PENDING_STATE) {
-      if (onFulfilled) {
-        this.thenQueue.push(onFulfilled)
+    return new MyPromise((resolve, reject) => {
+      if (this.state === PENDING_STATE) {
+        if (onFulfilled) {
+          this.thenQueue.push(() => {
+            try {
+              const newResult = onFulfilled(this.result)
+              resolve(newResult)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        }
+        if (onRejected) {
+          this.catchQueue.push(() => {
+            try {
+              const newResult = onRejected(this.result)
+              resolve(newResult)
+            } catch (e) {
+              reject(e)
+            }
+          })
+        }
       }
-      if (onRejected) {
-        this.catchQueue.push(onRejected)
+  
+      if (this.state === FULFILLED_STATE && onFulfilled) {
+        try {
+          const newResult = onFulfilled(this.result)
+          resolve(newResult)
+        } catch (e) {
+          reject(e)
+        }
       }
-    }
+  
+      if (this.state === REJECTED_STATE && onRejected) {
+        try {
+          const newResult = onRejected(this.result)
+          resolve(newResult)
+        } catch (e) {
+          reject(e)
+        }
+      }
+  
+      return this
+    })
+  }
 
-    if (this.state === FULFILLED_STATE && onFulfilled) {
-      onFulfilled(this.result)
-    }
-
-    if (this.state === REJECTED_STATE && onRejected) {
-      onRejected(this.result)
-    }
-
-    return this
+  catch(onRejected) {
+    return this.then(null, onRejected)
   }
 }
