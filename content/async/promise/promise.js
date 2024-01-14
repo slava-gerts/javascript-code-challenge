@@ -52,7 +52,11 @@ export class MyPromise {
           this.thenQueue.push(() => {
             try {
               const newResult = onFulfilled(this.result)
-              resolve(newResult)
+              if (newResult instanceof MyPromise) {
+                newResult.then(resolve, reject)
+              } else {
+                resolve(newResult)
+              }
             } catch (e) {
               reject(e)
             }
@@ -62,7 +66,11 @@ export class MyPromise {
           this.catchQueue.push(() => {
             try {
               const newResult = onRejected(this.result)
-              resolve(newResult)
+              if (newResult instanceof MyPromise) {
+                newResult.then(resolve, reject)
+              } else {
+                resolve(newResult)
+              }
             } catch (e) {
               reject(e)
             }
@@ -73,7 +81,11 @@ export class MyPromise {
       if (this.state === FULFILLED_STATE && onFulfilled) {
         try {
           const newResult = onFulfilled(this.result)
-          resolve(newResult)
+          if (newResult instanceof MyPromise) {
+            newResult.then(resolve, reject)
+          } else {
+            resolve(newResult)
+          }
         } catch (e) {
           reject(e)
         }
@@ -82,7 +94,11 @@ export class MyPromise {
       if (this.state === REJECTED_STATE && onRejected) {
         try {
           const newResult = onRejected(this.result)
-          resolve(newResult)
+          if (newResult instanceof MyPromise) {
+            newResult.then(resolve, reject)
+          } else {
+            resolve(newResult)
+          }
         } catch (e) {
           reject(e)
         }

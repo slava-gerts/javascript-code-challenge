@@ -1,10 +1,11 @@
-import {primitives, functions, asynchronous} from '../content'
+import {primitives, functions, asynchronous, solid} from '../content'
 import {mapJoin} from '../utils/map'
 
 const content = {
   'primitives': primitives,
   'functions': functions,
   'asynchronous': asynchronous,
+  'solid': solid,
 }
 
 export function renderContentById(id) {

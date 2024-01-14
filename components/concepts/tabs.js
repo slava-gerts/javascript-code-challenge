@@ -25,5 +25,10 @@ export const tabs = [
     id: 'v-pills-asynchronous',
     renderContent: () => renderContentById('asynchronous'),
     title: 'Asynchronous',
+  },
+  {
+    id: 'v-pills-solid',
+    renderContent: () => renderContentById('solid'),
+    title: 'SOLID',
   }
 ]

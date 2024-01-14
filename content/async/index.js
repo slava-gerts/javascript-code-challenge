@@ -15,11 +15,12 @@ export const content = [
 
 ;(async function f() {
   const promise = new MyPromise((resolve, reject) => {
-    setTimeout(() => resolve(5))
+    resolve(5)
   }).then(value => {
-    console.log('Success: ', value)
-    return value * 2
+    return new MyPromise((resolve, reject) => {
+      setTimeout(() => resolve(value + 'new promise'), 1000)
+    })
   }).then(value => {
-    console.log('Success 2: ', value)
+    console.log('Success 2:', value)
   })
 })()
