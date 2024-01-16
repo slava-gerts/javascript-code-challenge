@@ -1,5 +1,6 @@
 import {DataFetcher, HttpClient, DocumentService, UserService} from './singleResponsibility'
 import {Footballer, Footballer2, PlayerRole, GoalkeeperRole, DefenderRole} from './openClosed'
+import {Database, MySqlDatabase, MongoDatabase, Database2, SqlDatabase, NoSqlDatabase, MySqlDatabase2, MongoDatabase2} from './liskovSubstitution'
 
 export const content = [
   {
@@ -49,5 +50,34 @@ export const content = [
       ' ',
       'new Footballer("Neo Poli", 32, new DefenderRole())'
     ]
+  },
+  {
+    title: 'Liskov Substitution Principle',
+    preInformation: [
+      'Objects of a superclass should be replaceable by objects of a subclass without affecting the correctness of the program'
+    ],
+    data: [
+      '///////////////////////////////',
+      "// Bad example (don't do it) //",
+      '///////////////////////////////',
+      `${Database}`,
+      ' ',
+      `${MySqlDatabase}`,
+      ' ',
+      `${MongoDatabase}`,
+      ' ',
+      '////////////////////////////',
+      '// A possible improvement //',
+      '////////////////////////////',
+      `${Database2}`,
+      ' ',
+      `${SqlDatabase}`,
+      ' ',
+      `${NoSqlDatabase}`,
+      ' ',
+      `${MySqlDatabase2}`,
+      ' ',
+      `${MongoDatabase2}`,
+    ],
   }
 ]
